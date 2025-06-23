@@ -5,7 +5,9 @@ cd /d "%~dp0"
 call venv\Scripts\activate.bat
 
 :: Run the Streamlit app
-streamlit run vacation_tracker.py
+start "" streamlit run vacation_tracker.py
 
 :: Keep the window open if something fails
-pause
+:: pause
+
+exit
