@@ -62,6 +62,13 @@ def calculate_remaining_days(total_vacation_days, records):
         used_days += days if full_day else 0.5
     return total_vacation_days - used_days
 
+st.subheader("🔧 Set Your Total Vacation Days Allowance")
+total_vacation_days = st.number_input("Enter Your Total Vacation Days Allowance", min_value=1.0, value=total_vacation_days)
+if st.button("Update Allowance"):
+    cursor.execute(f"UPDATE {VACATION_ALLOWANCE_TABLE} SET value = ? WHERE key = 'total_days'", (total_vacation_days,))
+    conn.commit()
+    st.success("Total vacation days updated successfully!")
+    st.rerun()
 
 remaining_days = calculate_remaining_days(total_vacation_days, records)
 
