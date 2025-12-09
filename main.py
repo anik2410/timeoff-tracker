@@ -62,7 +62,12 @@ with tabs[0]:
     st.subheader("Add Vacation Record")
 
     vac_start = st.date_input("Start Date", key="vac_start")
-    vac_end   = st.date_input("End Date", value=vac_start, key="vac_end")
+    if "prev_vac_start" not in st.session_state or st.session_state.prev_vac_start != vac_start:
+        st.session_state.vac_end = vac_start
+
+    st.session_state.prev_vac_start = vac_start
+
+    vac_end   = st.date_input("End Date", key="vac_end")
     full  = st.radio("Full Day?", ["Yes", "No"], key="vac_full") == "Yes"
     purpose = st.text_input("Purpose", key="vac_purpose")
 
@@ -158,7 +163,10 @@ with tabs[1]:
     st.subheader("Add Personal Day")
 
     per_start = st.date_input("Start Date", key="per_start")
-    per_end   = st.date_input("End Date", value=per_start, key="per_end")
+    if "prev_per_start" not in st.session_state or st.session_state.prev_per_start != per_start:
+        st.session_state.per_end = per_start
+    st.session_state.prev_per_start = per_start
+    per_end   = st.date_input("End Date", key="per_end")
     full  = st.radio("Full Day?", ["Yes", "No"], key="per_full") == "Yes"
     purpose = st.text_input("Purpose", key="per_purpose")
 
