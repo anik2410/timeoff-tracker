@@ -23,7 +23,7 @@ with tabs[0]:
     vac_total = vac.get_allowance()
 
     if vac_total is None:
-        vac_total = st.number_input("Enter your total vacation days", min_value=1.0)
+        vac_total = st.number_input("Enter your total vacation days", min_value=1, step=1)
         if st.button("Save Vacation Allowance"):
             vac.set_allowance(vac_total)
             st.success("Vacation allowance saved.")
@@ -39,7 +39,8 @@ with tabs[0]:
         if st.session_state.get("vac_allowance_edit"):
             new_value = st.number_input(
                 "New Vacation Allowance",
-                min_value=1.0,
+                min_value=1,
+                step=1,
                 value=vac_total,
                 key="vac_allowance_input"
             )
@@ -126,7 +127,7 @@ with tabs[1]:
     per_total = per.get_allowance()
 
     if per_total is None:
-        per_total = st.number_input("Enter total personal days", min_value=1.0)
+        per_total = st.number_input("Enter total personal days", min_value=1, step=1)
         if st.button("Save Personal Allowance"):
             per.set_allowance(per_total)
             st.success("Personal allowance saved.")
@@ -141,7 +142,8 @@ with tabs[1]:
         if st.session_state.get("per_allowance_edit"):
             new_value = st.number_input(
                 "New Personal Allowance",
-                min_value=1.0,
+                min_value=1,
+                step=1,
                 value=per_total,
                 key="per_allowance_input"
             )
